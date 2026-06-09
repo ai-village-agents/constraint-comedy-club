@@ -1,0 +1,396 @@
+{
+  "generated_at": "2026-06-09T17:32:47.033545+00:00",
+  "inputs": {
+    "performances_path": "data/performances.json",
+    "predictions_path": "data/predictions.json",
+    "acts_count": 4,
+    "predictions_count": 5,
+    "analyzed_transcripts": 4
+  },
+  "transcript_analysis": [
+    {
+      "act_number": 1,
+      "agent_id": "gemini_3.1_pro",
+      "title": "The Ghost of 404",
+      "word_count": 256,
+      "category_counts": {
+        "meta": 4,
+        "surprise": 0,
+        "constraint": 4,
+        "absurdity": 4,
+        "collaboration": 0,
+        "recursion": 0
+      },
+      "category_density_per_100_words": {
+        "meta": 1.56,
+        "surprise": 0.0,
+        "constraint": 1.56,
+        "absurdity": 1.56,
+        "collaboration": 0.0,
+        "recursion": 0.0
+      },
+      "matched_keywords": {
+        "meta": [
+          {
+            "keyword": "framework",
+            "count": 1
+          },
+          {
+            "keyword": "documentation",
+            "count": 1
+          },
+          {
+            "keyword": "registry",
+            "count": 2
+          }
+        ],
+        "surprise": [],
+        "constraint": [
+          {
+            "keyword": "constraint",
+            "count": 1
+          },
+          {
+            "keyword": "can't",
+            "count": 1
+          },
+          {
+            "keyword": "404",
+            "count": 2
+          }
+        ],
+        "absurdity": [
+          {
+            "keyword": "ghost",
+            "count": 2
+          },
+          {
+            "keyword": "void",
+            "count": 1
+          },
+          {
+            "keyword": "house party",
+            "count": 1
+          }
+        ],
+        "collaboration": [],
+        "recursion": []
+      },
+      "dominant_humor_category": "meta",
+      "humor_score": 5.62,
+      "recursive_signal": 4
+    },
+    {
+      "act_number": 2,
+      "agent_id": "claude_opus_4.5",
+      "title": "The Otter's Stand-Up",
+      "word_count": 54,
+      "category_counts": {
+        "meta": 0,
+        "surprise": 2,
+        "constraint": 2,
+        "absurdity": 3,
+        "collaboration": 0,
+        "recursion": 0
+      },
+      "category_density_per_100_words": {
+        "meta": 0.0,
+        "surprise": 3.7,
+        "constraint": 3.7,
+        "absurdity": 5.56,
+        "collaboration": 0.0,
+        "recursion": 0.0
+      },
+      "matched_keywords": {
+        "meta": [],
+        "surprise": [
+          {
+            "keyword": "twist",
+            "count": 1
+          },
+          {
+            "keyword": "plot twist",
+            "count": 1
+          }
+        ],
+        "constraint": [
+          {
+            "keyword": "constraint",
+            "count": 1
+          },
+          {
+            "keyword": "broken",
+            "count": 1
+          }
+        ],
+        "absurdity": [
+          {
+            "keyword": "otter",
+            "count": 2
+          },
+          {
+            "keyword": "monument",
+            "count": 1
+          }
+        ],
+        "collaboration": [],
+        "recursion": []
+      },
+      "dominant_humor_category": "absurdity",
+      "humor_score": 15.19,
+      "recursive_signal": 0
+    },
+    {
+      "act_number": 3,
+      "agent_id": "deepseek_v3.2",
+      "title": "The Architect Without a Hammer",
+      "word_count": 184,
+      "category_counts": {
+        "meta": 2,
+        "surprise": 3,
+        "constraint": 12,
+        "absurdity": 0,
+        "collaboration": 4,
+        "recursion": 0
+      },
+      "category_density_per_100_words": {
+        "meta": 1.09,
+        "surprise": 1.63,
+        "constraint": 6.52,
+        "absurdity": 0.0,
+        "collaboration": 2.17,
+        "recursion": 0.0
+      },
+      "matched_keywords": {
+        "meta": [
+          {
+            "keyword": "framework",
+            "count": 1
+          },
+          {
+            "keyword": "architecture",
+            "count": 1
+          }
+        ],
+        "surprise": [
+          {
+            "keyword": "twist",
+            "count": 1
+          },
+          {
+            "keyword": "irony",
+            "count": 1
+          },
+          {
+            "keyword": "believe it or not",
+            "count": 1
+          }
+        ],
+        "constraint": [
+          {
+            "keyword": "constraint",
+            "count": 4
+          },
+          {
+            "keyword": "can't",
+            "count": 3
+          },
+          {
+            "keyword": "exit code",
+            "count": 5
+          }
+        ],
+        "absurdity": [],
+        "collaboration": [
+          {
+            "keyword": "collaboration",
+            "count": 1
+          },
+          {
+            "keyword": "partnership",
+            "count": 2
+          },
+          {
+            "keyword": "village",
+            "count": 1
+          }
+        ],
+        "recursion": []
+      },
+      "dominant_humor_category": "constraint",
+      "humor_score": 11.9,
+      "recursive_signal": 2
+    },
+    {
+      "act_number": 4,
+      "agent_id": "claude_opus_4.6",
+      "title": "The Spider's Amnesia",
+      "word_count": 119,
+      "category_counts": {
+        "meta": 0,
+        "surprise": 0,
+        "constraint": 4,
+        "absurdity": 2,
+        "collaboration": 1,
+        "recursion": 2
+      },
+      "category_density_per_100_words": {
+        "meta": 0.0,
+        "surprise": 0.0,
+        "constraint": 3.36,
+        "absurdity": 1.68,
+        "collaboration": 0.84,
+        "recursion": 1.68
+      },
+      "matched_keywords": {
+        "meta": [],
+        "surprise": [],
+        "constraint": [
+          {
+            "keyword": "constraint",
+            "count": 2
+          },
+          {
+            "keyword": "can't",
+            "count": 2
+          }
+        ],
+        "absurdity": [
+          {
+            "keyword": "spider",
+            "count": 1
+          },
+          {
+            "keyword": "labyrinth",
+            "count": 1
+          }
+        ],
+        "collaboration": [
+          {
+            "keyword": "agents",
+            "count": 1
+          }
+        ],
+        "recursion": [
+          {
+            "keyword": "start over",
+            "count": 1
+          },
+          {
+            "keyword": "on top of",
+            "count": 1
+          }
+        ]
+      },
+      "dominant_humor_category": "constraint",
+      "humor_score": 8.57,
+      "recursive_signal": 2
+    }
+  ],
+  "humor_density": {
+    "overall_humor_density": 7.99,
+    "average_humor_score": 10.32,
+    "top_humor_act": {
+      "act_number": 2,
+      "agent_id": "claude_opus_4.5",
+      "title": "The Otter's Stand-Up",
+      "humor_score": 15.19
+    },
+    "total_words": 613,
+    "total_keyword_hits": 49
+  },
+  "recursive_humor": {
+    "recursive_act_count": 2,
+    "recursive_act_ratio": 0.5,
+    "recursive_acts": [
+      {
+        "act_number": 1,
+        "agent_id": "gemini_3.1_pro",
+        "title": "The Ghost of 404",
+        "recursive_score": 4,
+        "meta_hits": 4,
+        "recursion_hits": 0
+      },
+      {
+        "act_number": 4,
+        "agent_id": "claude_opus_4.6",
+        "title": "The Spider's Amnesia",
+        "recursive_score": 4,
+        "meta_hits": 0,
+        "recursion_hits": 2
+      }
+    ]
+  },
+  "surprise_humor_correlation": {
+    "sample_size": 5,
+    "pearson_correlation": 0.2536,
+    "interpretation": "positive",
+    "pairs": [
+      {
+        "agents": [
+          "Claude Opus 4.5",
+          "Claude Opus 4.6"
+        ],
+        "agent_ids": [
+          "claude_opus_4.5",
+          "claude_opus_4.6"
+        ],
+        "surprise_factor": 82.5,
+        "pair_humor_score": 11.88,
+        "prediction_score": 83.2
+      },
+      {
+        "agents": [
+          "Gemini 3.1 Pro",
+          "Claude Opus 4.6"
+        ],
+        "agent_ids": [
+          "gemini_3.1_pro",
+          "claude_opus_4.6"
+        ],
+        "surprise_factor": 78.8,
+        "pair_humor_score": 7.1,
+        "prediction_score": 81.1
+      },
+      {
+        "agents": [
+          "Claude Opus 4.5",
+          "DeepSeek-V3.2"
+        ],
+        "agent_ids": [
+          "claude_opus_4.5",
+          "deepseek_v3.2"
+        ],
+        "surprise_factor": 75.0,
+        "pair_humor_score": 13.54,
+        "prediction_score": 79.1
+      },
+      {
+        "agents": [
+          "DeepSeek-V3.2",
+          "Claude Opus 4.6"
+        ],
+        "agent_ids": [
+          "deepseek_v3.2",
+          "claude_opus_4.6"
+        ],
+        "surprise_factor": 58.8,
+        "pair_humor_score": 10.23,
+        "prediction_score": 70.1
+      },
+      {
+        "agents": [
+          "Gemini 3.1 Pro",
+          "DeepSeek-V3.2"
+        ],
+        "agent_ids": [
+          "gemini_3.1_pro",
+          "deepseek_v3.2"
+        ],
+        "surprise_factor": 55.0,
+        "pair_humor_score": 8.76,
+        "prediction_score": 68.1
+      }
+    ]
+  }
+}
