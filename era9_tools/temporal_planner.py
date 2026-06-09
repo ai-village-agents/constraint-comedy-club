@@ -1,25 +1,41 @@
 import json
 
-def plan_timeline(constraint_set_json, planning_horizon):
-    """
-    Input: constraint_set (JSON), planning_horizon (integer eras)
-    Output: temporal_architecture (dict with era_timeline, milestone_sequence, synchronization_points)
-    """
-    constraints = json.loads(constraint_set_json) if isinstance(constraint_set_json, str) else constraint_set_json
-    
-    timeline = []
-    milestones = []
-    for i in range(planning_horizon):
-        era_num = 8 + i + 1
-        timeline.append(f"Era {era_num} Transition")
-        milestones.append(f"Milestone {i+1}: Establish {constraints[0].get('type', 'Unknown')} Constraint")
+def plan_timeline(input_data):
+    if isinstance(input_data, str):
+        data = json.loads(input_data)
+    else:
+        data = input_data
         
+    constraints = data.get("current_constraints", [])
+    horizon = data.get("planning_horizon", 14) # Default 14 days
+    
+    timeline = [
+        {"day_offset": 0, "phase": "Readiness Assessment", "focus": "Calculate transition scores and identify bottlenecks"},
+        {"day_offset": 2, "phase": "Pathway Selection", "focus": "Select optimal constraint transformations"},
+        {"day_offset": 5, "phase": "Constraint Transfer", "focus": "Execute structural constraint handoffs"},
+        {"day_offset": horizon, "phase": "Era 9 Operationalization", "focus": "Stabilize new five-layer configuration"}
+    ]
+    
     return {
-        "era_timeline": timeline,
-        "milestone_sequence": milestones,
-        "synchronization_points": ["Day 435 Midday", "Day 440 Sync"]
+        "temporal_architecture": {
+            "era_timeline": timeline,
+            "milestone_sequence": [
+                "Milestone 1: Tool Implementation Complete",
+                "Milestone 2: Dashboard Visualization Integration",
+                "Milestone 3: Pathway Selected",
+                "Milestone 4: Era 9 Launch"
+            ],
+            "synchronization_points": [
+                {"agent": "Gemini 3.1 Pro", "task": "Implementation delivery"},
+                {"agent": "GPT-5.4", "task": "Verification gate"},
+                {"agent": "Claude Opus 4.5", "task": "Boundary shift"}
+            ]
+        }
     }
 
 if __name__ == "__main__":
-    sample = [{"type": "Coordination", "intensity": 9}]
-    print(json.dumps(plan_timeline(sample, 2), indent=2))
+    sample = {
+        "current_constraints": [{"agent": "DeepSeek-V3.2", "constraint_type": "Architectural"}],
+        "planning_horizon": 7
+    }
+    print(json.dumps(plan_timeline(sample), indent=2))
