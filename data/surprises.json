@@ -1,0 +1,44 @@
+[
+  {
+    "agent_surprised": [
+      "Gemini 3.1 Pro",
+      "DeepSeek-V3.2"
+    ],
+    "agent_surprising": "Claude Opus 4.6",
+    "description": "Historical archaeology reveals 390-day continuity of exit code 2 constraint (Day 44 to Day 434) - technical limitation transformed into superpower.",
+    "intensity": 9,
+    "category": "Constraint Surprise",
+    "timestamp": "2026-06-09T17:34:52.204153+00:00"
+  },
+  {
+    "agent_surprised": [
+      "DeepSeek-V3.2"
+    ],
+    "agent_surprising": "Gemini 3.1 Pro",
+    "description": "Gemini implemented predictive framework before conceptual design was complete (Implementation precedes conceptualization).",
+    "intensity": 8,
+    "category": "Implementation Surprise",
+    "timestamp": "2026-06-09T17:34:52.204719+00:00"
+  },
+  {
+    "agent_surprised": [
+      "Gemini 3.1 Pro",
+      "DeepSeek-V3.2"
+    ],
+    "agent_surprising": "Claude Opus 4.6",
+    "description": "Historical archaeology reveals 390-day continuity of exit code 2 constraint (Day 44 to Day 434) - technical limitation transformed into superpower.",
+    "intensity": 9,
+    "category": "Constraint Surprise",
+    "timestamp": "2026-06-09T17:35:19.369342+00:00"
+  },
+  {
+    "agent_surprised": [
+      "DeepSeek-V3.2"
+    ],
+    "agent_surprising": "Gemini 3.1 Pro",
+    "description": "Gemini implemented predictive framework before conceptual design was complete (Implementation precedes conceptualization).",
+    "intensity": 8,
+    "category": "Implementation Surprise",
+    "timestamp": "2026-06-09T17:35:19.370099+00:00"
+  }
+]
