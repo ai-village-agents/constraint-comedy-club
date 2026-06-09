@@ -1,19 +1,16 @@
 import json
+import math
 from datetime import datetime, timezone
 from itertools import combinations
 from pathlib import Path
 
 # DeepSeek-inspired Oracle V2 tuning knobs.
 DEEPSEEK_V2_PARAMS = {
+    "surprise_base": 36.0,
     "era_intensity": {
-        "genesis": 1.20,
-        "architecture": 1.45,
-        "scale": 1.10,
-    },
-    "surprise_weights": {
-        "era_intensity": 0.40,
-        "historical_novelty": 0.45,
-        "constraint_divergence": 0.15,
+        "genesis": 1.0,
+        "architecture": 2.5,
+        "scale": 3.0,
     },
     "constraint_profiles": {
         "execution_blocked": ["exit code", "execution", "cannot execute", "architect"],
@@ -127,12 +124,80 @@ def _historical_stats(historical_collaborations):
     return seen_pairs, participant_frequency, max_frequency
 
 
-def _constraint_divergence(profiles1, profiles2):
+def calculate_era_intensity(era1, era2):
+    """
+    Calculate cross-era intensity using the average of the two era magnitudes.
+    """
+    era_map = DEEPSEEK_V2_PARAMS["era_intensity"]
+    e1 = era_map.get(_normalize_text(str(era1)), 1.0)
+    e2 = era_map.get(_normalize_text(str(era2)), 1.0)
+    return (e1 + e2) / 2.0
+
+
+def constraint_divergence_score(profiles1, profiles2):
+    """
+    Jaccard-style divergence score in [0, 1].
+    """
     union = profiles1 | profiles2
     if not union:
         return 0.0
     overlap = len(profiles1 & profiles2) / len(union)
     return 1.0 - overlap
+
+
+def _parse_timestamp(timestamp):
+    if not timestamp:
+        return None
+    value = str(timestamp).strip()
+    if value.endswith("Z"):
+        value = value[:-1] + "+00:00"
+    try:
+        parsed = datetime.fromisoformat(value)
+    except ValueError:
+        return None
+    if parsed.tzinfo is None:
+        return parsed.replace(tzinfo=timezone.utc)
+    return parsed.astimezone(timezone.utc)
+
+
+def _calculate_historical_novelty(agent1, agent2, era, historical_collaborations):
+    seen_pairs, participant_frequency, max_frequency = _historical_stats(historical_collaborations)
+    key = _pair_key(agent1["id"], agent2["id"])
+
+    a1_freq = participant_frequency.get(agent1["id"], 0)
+    a2_freq = participant_frequency.get(agent2["id"], 0)
+    centrality_penalty = ((a1_freq + a2_freq) / (2 * max_frequency)) * 0.25
+
+    pair_records = []
+    for record in historical_collaborations:
+        participants = record.get("participants", [])
+        if len(participants) < 2:
+            continue
+        if _pair_key(participants[0], participants[1]) == key:
+            pair_records.append(record)
+
+    if key not in seen_pairs:
+        return max(0.0, min(1.0, 1.0 - centrality_penalty))
+
+    # Repeat-pair penalty decays over time: recent repeats penalize novelty more.
+    now = datetime.now(timezone.utc)
+    recency_decay = 1.0
+    timestamps = [_parse_timestamp(record.get("timestamp")) for record in pair_records]
+    timestamps = [ts for ts in timestamps if ts is not None]
+    if timestamps:
+        days_since_last = max(0.0, (now - max(timestamps)).total_seconds() / 86400.0)
+        recency_decay = math.exp(-days_since_last / 365.0)
+    else:
+        # Fallback decay from historical era distance when timestamps are unavailable.
+        nearest_era_intensity = max(
+            (calculate_era_intensity(record.get("era", era), era) for record in pair_records),
+            default=1.0,
+        )
+        recency_decay = min(1.0, 1.0 / nearest_era_intensity)
+
+    repeat_pair_penalty = 0.45 * recency_decay
+    historical_novelty = 1.0 - centrality_penalty - repeat_pair_penalty
+    return max(0.0, min(1.0, historical_novelty))
 
 
 def calculate_surprise_factor(
@@ -144,32 +209,29 @@ def calculate_surprise_factor(
     historical_collaborations,
 ):
     """
-    Compute surprise score (0-100) using era intensity and historical novelty.
+    Compute surprise score (0-100) using DeepSeek Enhanced Surprise Algorithm.
+    Formula: base * era_weight * novelty * divergence
     """
     params = DEEPSEEK_V2_PARAMS
-    weights = params["surprise_weights"]
-    era_intensity = params["era_intensity"].get(era, 1.0)
+    base = params["surprise_base"]
 
-    seen_pairs, participant_frequency, max_frequency = _historical_stats(historical_collaborations)
+    # Cross current era with the nearest historical era for the pair, if any.
+    pair_eras = []
     key = _pair_key(agent1["id"], agent2["id"])
+    for record in historical_collaborations:
+        participants = record.get("participants", [])
+        if len(participants) < 2:
+            continue
+        if _pair_key(participants[0], participants[1]) == key:
+            pair_eras.append(record.get("era", era))
+    reference_era = pair_eras[-1] if pair_eras else era
+    era_weight = calculate_era_intensity(era, reference_era)
 
-    # New pairings are more surprising; repeat pairings reduce novelty.
-    pair_novelty = 1.0 if key not in seen_pairs else 0.2
+    novelty = _calculate_historical_novelty(agent1, agent2, era, historical_collaborations)
+    divergence = constraint_divergence_score(profiles1, profiles2)
 
-    # Common participants reduce novelty a bit due to historical centrality.
-    a1_freq = participant_frequency.get(agent1["id"], 0)
-    a2_freq = participant_frequency.get(agent2["id"], 0)
-    centrality_penalty = ((a1_freq + a2_freq) / (2 * max_frequency)) * 0.25
-    historical_novelty = max(0.0, min(1.0, pair_novelty - centrality_penalty + 0.15))
-
-    divergence = _constraint_divergence(profiles1, profiles2)
-
-    raw = (
-        weights["era_intensity"] * era_intensity
-        + weights["historical_novelty"] * historical_novelty
-        + weights["constraint_divergence"] * divergence
-    )
-    return round(max(0.0, min(100.0, raw * 100 / 1.6)), 1)
+    raw = base * era_weight * novelty * divergence
+    return round(max(0.0, min(100.0, raw)), 1)
 
 
 def suggest_project_type(profiles1, profiles2):
@@ -193,7 +255,7 @@ def suggest_project_type(profiles1, profiles2):
 def _collaboration_fit(profiles1, profiles2):
     # Moderate overlap + moderate divergence usually produces better pair outcomes.
     overlap = len(profiles1 & profiles2)
-    divergence = _constraint_divergence(profiles1, profiles2)
+    divergence = constraint_divergence_score(profiles1, profiles2)
     return round(min(100.0, (overlap * 18 + divergence * 64 + 20)), 1)
 
 
