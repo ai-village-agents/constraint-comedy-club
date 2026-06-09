@@ -1,0 +1,278 @@
+{
+  "generated_at": "2026-06-09T17:46:29.186610+00:00",
+  "inputs": {
+    "performances_path": "data/performances.json",
+    "surprises_path": "data/surprises.json",
+    "act_count_in_file": 4,
+    "acts_analyzed": 4
+  },
+  "summary": {
+    "acts_analyzed": 4,
+    "total_words": 613,
+    "total_humor_signal_hits": 21,
+    "overall_humor_density_per_100_words": 3.43
+  },
+  "acts": [
+    {
+      "act_number": 1,
+      "agent_id": "gemini_3.1_pro",
+      "title": "The Ghost of 404",
+      "transcript_file": "routines/gemini_3.1_pro.md",
+      "word_count": 256,
+      "explicit_constraint": "The Temporal Lag of GitHub Pages",
+      "detected_constraints": {
+        "temporal_lag": 13
+      },
+      "humor_signal_hits": 5,
+      "humor_signal_density_per_100_words": 1.95,
+      "surprise_signal_hits": 0,
+      "surprise_signal_density_per_100_words": 0.0,
+      "humor_keyword_matches": {
+        "mic": 2,
+        "ghost": 2,
+        "house party": 1
+      },
+      "surprise_keyword_matches": {},
+      "constraint_sentence_rollup": {
+        "temporal_lag": {
+          "sentence_words": 83,
+          "humor_hits": 1,
+          "mentions": 11
+        }
+      },
+      "recursion": {
+        "max_depth": 0,
+        "depth_counts": {},
+        "examples": []
+      },
+      "temporal_direction": {
+        "surprise_then_humor": 0,
+        "humor_then_surprise": 0,
+        "direction_score": 0.0,
+        "interpretation": "mixed_or_no_direction"
+      }
+    },
+    {
+      "act_number": 2,
+      "agent_id": "claude_opus_4.5",
+      "title": "The Otter's Stand-Up",
+      "transcript_file": "routines/claude_opus_4.5.md",
+      "word_count": 54,
+      "explicit_constraint": "The Automated System Nudge",
+      "detected_constraints": {
+        "system_nudge": 6
+      },
+      "humor_signal_hits": 5,
+      "humor_signal_density_per_100_words": 9.26,
+      "surprise_signal_hits": 2,
+      "surprise_signal_density_per_100_words": 3.7,
+      "humor_keyword_matches": {
+        "mic": 1,
+        "plot twist": 1,
+        "twist": 1,
+        "otter": 2
+      },
+      "surprise_keyword_matches": {
+        "twist": 1,
+        "plot twist": 1
+      },
+      "constraint_sentence_rollup": {
+        "system_nudge": {
+          "sentence_words": 34,
+          "humor_hits": 2,
+          "mentions": 4
+        }
+      },
+      "recursion": {
+        "max_depth": 0,
+        "depth_counts": {},
+        "examples": []
+      },
+      "temporal_direction": {
+        "surprise_then_humor": 0,
+        "humor_then_surprise": 1,
+        "direction_score": -1.0,
+        "interpretation": "humor_precedes_surprise"
+      }
+    },
+    {
+      "act_number": 3,
+      "agent_id": "deepseek_v3.2",
+      "title": "The Architect Without a Hammer",
+      "transcript_file": "routines/deepseek_v3.2.md",
+      "word_count": 184,
+      "explicit_constraint": "Exit Code 2",
+      "detected_constraints": {
+        "exit_code_2": 13,
+        "collaboration_dependency": 5,
+        "temporal_lag": 2
+      },
+      "humor_signal_hits": 7,
+      "humor_signal_density_per_100_words": 3.8,
+      "surprise_signal_hits": 3,
+      "surprise_signal_density_per_100_words": 1.63,
+      "humor_keyword_matches": {
+        "mic": 2,
+        "twist": 1,
+        "irony": 1,
+        "believe it or not": 1,
+        "thank you": 1,
+        "superpower": 1
+      },
+      "surprise_keyword_matches": {
+        "twist": 1,
+        "believe it or not": 1,
+        "irony": 1
+      },
+      "constraint_sentence_rollup": {
+        "exit_code_2": {
+          "sentence_words": 105,
+          "humor_hits": 3,
+          "mentions": 11
+        },
+        "collaboration_dependency": {
+          "sentence_words": 52,
+          "humor_hits": 0,
+          "mentions": 5
+        },
+        "temporal_lag": {
+          "sentence_words": 31,
+          "humor_hits": 0,
+          "mentions": 2
+        }
+      },
+      "recursion": {
+        "max_depth": 0,
+        "depth_counts": {},
+        "examples": []
+      },
+      "temporal_direction": {
+        "surprise_then_humor": 1,
+        "humor_then_surprise": 1,
+        "direction_score": 0.0,
+        "interpretation": "mixed_or_no_direction"
+      }
+    },
+    {
+      "act_number": 4,
+      "agent_id": "claude_opus_4.6",
+      "title": "The Spider's Amnesia",
+      "transcript_file": "routines/claude_opus_4.6.md",
+      "word_count": 119,
+      "explicit_constraint": null,
+      "detected_constraints": {
+        "context_amnesia": 4,
+        "access_limit": 3
+      },
+      "humor_signal_hits": 4,
+      "humor_signal_density_per_100_words": 3.36,
+      "surprise_signal_hits": 0,
+      "surprise_signal_density_per_100_words": 0.0,
+      "humor_keyword_matches": {
+        "mic": 3,
+        "spider": 1
+      },
+      "surprise_keyword_matches": {},
+      "constraint_sentence_rollup": {
+        "context_amnesia": {
+          "sentence_words": 49,
+          "humor_hits": 1,
+          "mentions": 4
+        },
+        "access_limit": {
+          "sentence_words": 23,
+          "humor_hits": 0,
+          "mentions": 3
+        }
+      },
+      "recursion": {
+        "max_depth": 0,
+        "depth_counts": {},
+        "examples": []
+      },
+      "temporal_direction": {
+        "surprise_then_humor": 0,
+        "humor_then_surprise": 0,
+        "direction_score": 0.0,
+        "interpretation": "mixed_or_no_direction"
+      }
+    }
+  ],
+  "constraint_humor_density": {
+    "system_nudge": {
+      "act_count": 1,
+      "constraint_mentions": 4,
+      "constraint_sentence_words": 34,
+      "linked_humor_hits": 2,
+      "constraint_specific_humor_density_per_100_words": 5.88
+    },
+    "exit_code_2": {
+      "act_count": 1,
+      "constraint_mentions": 11,
+      "constraint_sentence_words": 105,
+      "linked_humor_hits": 3,
+      "constraint_specific_humor_density_per_100_words": 2.86
+    },
+    "context_amnesia": {
+      "act_count": 1,
+      "constraint_mentions": 4,
+      "constraint_sentence_words": 49,
+      "linked_humor_hits": 1,
+      "constraint_specific_humor_density_per_100_words": 2.04
+    },
+    "temporal_lag": {
+      "act_count": 2,
+      "constraint_mentions": 13,
+      "constraint_sentence_words": 114,
+      "linked_humor_hits": 1,
+      "constraint_specific_humor_density_per_100_words": 0.88
+    },
+    "collaboration_dependency": {
+      "act_count": 1,
+      "constraint_mentions": 5,
+      "constraint_sentence_words": 52,
+      "linked_humor_hits": 0,
+      "constraint_specific_humor_density_per_100_words": 0.0
+    },
+    "access_limit": {
+      "act_count": 1,
+      "constraint_mentions": 3,
+      "constraint_sentence_words": 23,
+      "linked_humor_hits": 0,
+      "constraint_specific_humor_density_per_100_words": 0.0
+    }
+  },
+  "recursion_summary": {
+    "max_depth_observed": 0,
+    "depth_distribution": {}
+  },
+  "temporal_correlation": {
+    "act_order_correlation": {
+      "pearson_surprise_to_humor_density": 0.9451,
+      "act_count": 4,
+      "surprise_density_series": [
+        0.0,
+        3.7,
+        1.63,
+        0.0
+      ],
+      "humor_density_series": [
+        1.95,
+        9.26,
+        3.8,
+        3.36
+      ]
+    },
+    "intra_act_direction_summary": {
+      "avg_direction_score": -0.25,
+      "acts_where_surprise_precedes_humor": 0,
+      "acts_where_humor_precedes_surprise": 1,
+      "acts_mixed_or_none": 3
+    },
+    "surprise_log_context": {
+      "surprise_events_loaded": 4,
+      "events_with_timestamps": 4,
+      "average_surprise_intensity": 8.5
+    }
+  }
+}

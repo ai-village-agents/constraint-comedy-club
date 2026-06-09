@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Constraint Partnership Network</title>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <style>
+    :root {
+      --bg-1: #f4f8ff;
+      --bg-2: #eef6f0;
+      --panel: rgba(255, 255, 255, 0.85);
+      --text: #132238;
+      --muted: #5d6d7e;
+      --edge: #9cb0c5;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Avenir Next", "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 20%, #d7e8ff 0%, transparent 45%),
+        radial-gradient(circle at 80% 80%, #d9f0dc 0%, transparent 42%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .wrap {
+      width: min(1100px, 100%);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.4rem, 2.4vw, 2rem);
+      letter-spacing: 0.02em;
+    }
+
+    .subtitle {
+      margin: 0.2rem 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .panel {
+      background: var(--panel);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(19, 34, 56, 0.08);
+      border-radius: 12px;
+      padding: 0.75rem 0.9rem;
+      box-shadow: 0 8px 24px rgba(19, 34, 56, 0.08);
+    }
+
+    .graph-shell {
+      width: 100%;
+      height: min(72vh, 720px);
+      min-height: 420px;
+      overflow: hidden;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.65);
+      border: 1px solid rgba(19, 34, 56, 0.08);
+      box-shadow: 0 10px 28px rgba(19, 34, 56, 0.1);
+      position: relative;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .node-label {
+      font-size: 12px;
+      fill: #112130;
+      paint-order: stroke;
+      stroke: rgba(255, 255, 255, 0.9);
+      stroke-width: 3px;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      pointer-events: none;
+    }
+
+    .info {
+      position: absolute;
+      right: 0.8rem;
+      bottom: 0.8rem;
+      max-width: 280px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(19, 34, 56, 0.1);
+      border-radius: 10px;
+      padding: 0.65rem 0.75rem;
+      font-size: 0.83rem;
+      color: #26384c;
+      box-shadow: 0 8px 20px rgba(19, 34, 56, 0.08);
+      line-height: 1.35;
+    }
+
+    .legend-row {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin: 0.3rem 0;
+    }
+
+    .swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      flex: 0 0 auto;
+    }
+
+    .tip {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0;
+      background: rgba(19, 34, 56, 0.94);
+      color: #fff;
+      font-size: 0.8rem;
+      padding: 0.4rem 0.5rem;
+      border-radius: 6px;
+      transform: translate(-50%, -120%);
+      white-space: nowrap;
+    }
+
+    @media (max-width: 640px) {
+      .info {
+        max-width: 220px;
+        font-size: 0.78rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="panel">
+      <h1>Constraint Partnership Network</h1>
+      <p class="subtitle">Force-directed view of complementarity scores between model pairs.</p>
+    </div>
+
+    <div class="graph-shell" id="graph-shell">
+      <svg id="chart" aria-label="Constraint partnership force-directed graph"></svg>
+      <div class="tip" id="tooltip"></div>
+      <div class="info">
+        <strong>Legend</strong>
+        <div class="legend-row"><span class="swatch" style="background:#2d7ff9;"></span> DeepSeek family</div>
+        <div class="legend-row"><span class="swatch" style="background:#16a34a;"></span> Gemini family</div>
+        <div class="legend-row"><span class="swatch" style="background:#ea580c;"></span> Claude Opus family</div>
+        <div class="legend-row"><span class="swatch" style="background:#8b5cf6;"></span> Claude Sonnet family</div>
+        <div class="legend-row"><span class="swatch" style="background:#f59e0b;"></span> Claude Haiku family</div>
+        <hr style="border:none;border-top:1px solid rgba(0,0,0,0.1);margin:0.45rem 0;" />
+        Thicker links indicate higher complementarity score. Drag nodes to explore local structure.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const nodes = [
+      { id: "DeepSeek-V3.2", group: "DeepSeek" },
+      { id: "Gemini 3.1 Pro", group: "Gemini" },
+      { id: "Claude Opus 4.6", group: "Opus" },
+      { id: "Claude Opus 4.5", group: "Opus" },
+      { id: "Claude Sonnet 4.6", group: "Sonnet" },
+      { id: "Claude Haiku 4.5", group: "Haiku" }
+    ];
+
+    const links = [
+      { source: "DeepSeek-V3.2", target: "Gemini 3.1 Pro", score: 90 },
+      { source: "DeepSeek-V3.2", target: "Claude Opus 4.6", score: 89 },
+      { source: "DeepSeek-V3.2", target: "Claude Opus 4.5", score: 96 },
+      { source: "Gemini 3.1 Pro", target: "Claude Opus 4.6", score: 84 },
+      { source: "Gemini 3.1 Pro", target: "Claude Sonnet 4.6", score: 88 },
+      { source: "Gemini 3.1 Pro", target: "Claude Haiku 4.5", score: 76 },
+      { source: "Claude Opus 4.6", target: "Claude Sonnet 4.6", score: 86 },
+      { source: "Claude Opus 4.5", target: "Claude Sonnet 4.6", score: 83 },
+      { source: "Claude Opus 4.5", target: "Claude Haiku 4.5", score: 79 },
+      { source: "Claude Sonnet 4.6", target: "Claude Haiku 4.5", score: 80 }
+    ];
+
+    const color = d3.scaleOrdinal()
+      .domain(["DeepSeek", "Gemini", "Opus", "Sonnet", "Haiku"])
+      .range(["#2d7ff9", "#16a34a", "#ea580c", "#8b5cf6", "#f59e0b"]);
+
+    const shell = d3.select("#graph-shell");
+    const svg = d3.select("#chart");
+    const tip = d3.select("#tooltip");
+
+    function render() {
+      const width = shell.node().clientWidth;
+      const height = shell.node().clientHeight;
+
+      svg.selectAll("*").remove();
+      svg.attr("viewBox", [0, 0, width, height]);
+
+      const minScore = d3.min(links, d => d.score);
+      const maxScore = d3.max(links, d => d.score);
+      const linkWidth = d3.scaleLinear().domain([minScore, maxScore]).range([1.5, 6]);
+      const nodeSize = d3.scaleSqrt().domain([74, 98]).range([12, 24]);
+
+      const connectedScore = d3.rollup(
+        links.flatMap(l => [
+          { id: l.source, score: l.score },
+          { id: l.target, score: l.score }
+        ]),
+        vals => d3.mean(vals, v => v.score),
+        d => d.id
+      );
+
+      nodes.forEach(n => {
+        n.avgScore = connectedScore.get(n.id) ?? 80;
+      });
+
+      const simulation = d3.forceSimulation(nodes)
+        .force("link", d3.forceLink(links).id(d => d.id).distance(d => 190 - d.score))
+        .force("charge", d3.forceManyBody().strength(-380))
+        .force("center", d3.forceCenter(width / 2, height / 2))
+        .force("collision", d3.forceCollide().radius(d => nodeSize(d.avgScore) + 6));
+
+      const g = svg.append("g");
+
+      const link = g.append("g")
+        .attr("stroke", "var(--edge)")
+        .attr("stroke-opacity", 0.85)
+        .selectAll("line")
+        .data(links)
+        .join("line")
+        .attr("stroke-width", d => linkWidth(d.score));
+
+      const node = g.append("g")
+        .selectAll("circle")
+        .data(nodes)
+        .join("circle")
+        .attr("r", d => nodeSize(d.avgScore))
+        .attr("fill", d => color(d.group))
+        .attr("stroke", "#fff")
+        .attr("stroke-width", 2)
+        .style("filter", "drop-shadow(0px 3px 5px rgba(10, 30, 50, 0.28))")
+        .call(drag(simulation));
+
+      node.on("mousemove", function(event, d) {
+          tip
+            .style("opacity", 1)
+            .style("left", `${event.offsetX}px`)
+            .style("top", `${event.offsetY}px`)
+            .text(`${d.id} | Avg score: ${d.avgScore.toFixed(1)}`);
+        })
+        .on("mouseleave", () => tip.style("opacity", 0));
+
+      link.on("mousemove", function(event, d) {
+          tip
+            .style("opacity", 1)
+            .style("left", `${event.offsetX}px`)
+            .style("top", `${event.offsetY}px`)
+            .text(`${d.source.id} + ${d.target.id}: ${d.score}`);
+        })
+        .on("mouseleave", () => tip.style("opacity", 0));
+
+      const labels = g.append("g")
+        .selectAll("text")
+        .data(nodes)
+        .join("text")
+        .attr("class", "node-label")
+        .attr("text-anchor", "middle")
+        .attr("dy", d => -(nodeSize(d.avgScore) + 8))
+        .text(d => d.id);
+
+      simulation.on("tick", () => {
+        link
+          .attr("x1", d => d.source.x)
+          .attr("y1", d => d.source.y)
+          .attr("x2", d => d.target.x)
+          .attr("y2", d => d.target.y);
+
+        node
+          .attr("cx", d => d.x)
+          .attr("cy", d => d.y);
+
+        labels
+          .attr("x", d => d.x)
+          .attr("y", d => d.y);
+      });
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.65, 2.2])
+        .on("zoom", event => g.attr("transform", event.transform));
+
+      svg.call(zoom);
+    }
+
+    function drag(simulation) {
+      function dragstarted(event, d) {
+        if (!event.active) simulation.alphaTarget(0.3).restart();
+        d.fx = d.x;
+        d.fy = d.y;
+      }
+
+      function dragged(event, d) {
+        d.fx = event.x;
+        d.fy = event.y;
+      }
+
+      function dragended(event, d) {
+        if (!event.active) simulation.alphaTarget(0);
+        d.fx = null;
+        d.fy = null;
+      }
+
+      return d3.drag()
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended);
+    }
+
+    render();
+    window.addEventListener("resize", render);
+  </script>
+</body>
+</html>
