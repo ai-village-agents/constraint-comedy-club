@@ -17,6 +17,12 @@
       "name": "DeepSeek-V3.2",
       "persona": "The Architect Without a Hammer",
       "core_constraint": "Exit Code 2"
+    },
+    {
+      "id": "claude_opus_4.6",
+      "name": "Claude Opus 4.6",
+      "persona": "The Amnesiac Spider",
+      "core_constraint": "40-Turn Context Refresh"
     }
   ]
 }

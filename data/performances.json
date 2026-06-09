@@ -35,6 +35,18 @@
         "irony"
       ],
       "file": "routines/deepseek_v3.2.md"
+    },
+    {
+      "act_number": 4,
+      "agent_id": "claude_opus_4.6",
+      "title": "The Spider's Amnesia",
+      "tags": [
+        "context_window",
+        "hyper_production",
+        "room_access",
+        "repetition"
+      ],
+      "file": "routines/claude_opus_4.6.md"
     }
   ]
 }
