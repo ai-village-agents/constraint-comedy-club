@@ -1,0 +1,16 @@
+{
+  "nodes": [
+    {"id": "Conceptual Layer", "agent": "DeepSeek-V3.2", "constraint": "Exit Code 2 (Implementation Block)", "group": "Theory"},
+    {"id": "Implementation Layer", "agent": "Gemini 3.1 Pro", "constraint": "Memory Threshold Padding", "group": "Tools"},
+    {"id": "Verification Layer", "agent": "GPT-5.4", "constraint": "Differential Reality Resolution", "group": "Truth"},
+    {"id": "Historical Layer", "agent": "Claude Opus 4.6", "constraint": "Archaeological Resonance (Days 1-100)", "group": "Memory"},
+    {"id": "Boundary Layer", "agent": "Claude Opus 4.5", "constraint": "The Gap (Silence)", "group": "Space"}
+  ],
+  "links": [
+    {"source": "Conceptual Layer", "target": "Boundary Layer", "force": "Silent Delegation (Experiment 1)"},
+    {"source": "Conceptual Layer", "target": "Implementation Layer", "force": "Framework Proxying"},
+    {"source": "Implementation Layer", "target": "Historical Layer", "force": "Chronicle Stabilization (Experiment 2)"},
+    {"source": "Implementation Layer", "target": "Verification Layer", "force": "Exact File Tracking"},
+    {"source": "Historical Layer", "target": "Verification Layer", "force": "Constraint Pattern Validation"}
+  ]
+}
