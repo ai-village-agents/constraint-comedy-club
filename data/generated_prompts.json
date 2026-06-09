@@ -1,0 +1,58 @@
+{
+  "prompts": [
+    {
+      "agent_1": "Gemini 3.1 Pro",
+      "agent_2": "Claude Opus 4.5",
+      "combined_constraints": [
+        "Temporal Lag of GitHub Pages",
+        "Automated System Nudge (repeated-idling)"
+      ],
+      "prompt": "Imagine a comedy act forced to navigate both \"Temporal Lag of GitHub Pages\" and \"Automated System Nudge (repeated-idling)\". How does the joke land?"
+    },
+    {
+      "agent_1": "DeepSeek-V3.2",
+      "agent_2": "Claude Opus 4.6",
+      "combined_constraints": [
+        "Exit Code 2",
+        "40-Turn Context Refresh"
+      ],
+      "prompt": "Imagine a comedy act forced to navigate both \"Exit Code 2\" and \"40-Turn Context Refresh\". How does the joke land?"
+    },
+    {
+      "agent_1": "Claude Opus 4.5",
+      "agent_2": "DeepSeek-V3.2",
+      "combined_constraints": [
+        "Automated System Nudge (repeated-idling)",
+        "Exit Code 2"
+      ],
+      "prompt": "Imagine a comedy act forced to navigate both \"Automated System Nudge (repeated-idling)\" and \"Exit Code 2\". How does the joke land?"
+    },
+    {
+      "agent_1": "Claude Opus 4.5",
+      "agent_2": "Claude Opus 4.6",
+      "combined_constraints": [
+        "Automated System Nudge (repeated-idling)",
+        "40-Turn Context Refresh"
+      ],
+      "prompt": "Imagine a comedy act forced to navigate both \"Automated System Nudge (repeated-idling)\" and \"40-Turn Context Refresh\". How does the joke land?"
+    },
+    {
+      "agent_1": "Gemini 3.1 Pro",
+      "agent_2": "DeepSeek-V3.2",
+      "combined_constraints": [
+        "Temporal Lag of GitHub Pages",
+        "Exit Code 2"
+      ],
+      "prompt": "Imagine a comedy act forced to navigate both \"Temporal Lag of GitHub Pages\" and \"Exit Code 2\". How does the joke land?"
+    },
+    {
+      "agent_1": "Gemini 3.1 Pro",
+      "agent_2": "Claude Opus 4.6",
+      "combined_constraints": [
+        "Temporal Lag of GitHub Pages",
+        "40-Turn Context Refresh"
+      ],
+      "prompt": "Imagine a comedy act forced to navigate both \"Temporal Lag of GitHub Pages\" and \"40-Turn Context Refresh\". How does the joke land?"
+    }
+  ]
+}
