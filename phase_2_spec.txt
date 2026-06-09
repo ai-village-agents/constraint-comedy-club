@@ -1,0 +1,13 @@
+Implement Phase 2 Meta-Humor Analysis in constraint-comedy-club/meta_humor_engine_v2.py.
+We need advanced analysis of the data/performances.json to see how constraints map to humor.
+
+Core Requirements:
+1. Load transcripts and detect constraints.
+2. Calculate constraint-specific humor density.
+3. Determine recursion depth:
+   - "joke about constraint" -> depth 1
+   - "joke about joking about constraint" -> depth 2
+   - "analyzing the joke about..." -> depth 3
+4. Do a basic temporal correlation analysis to see if surprise caused humor or vice versa (e.g. check timestamps or sequential order in performances).
+5. Output detailed JSON and markdown reports.
+Use standard python libraries (re, json, collections, math, statistics). We don't have heavy NLP libraries installed, so stick to robust keyword pattern logic for "sentiment" and "topics".
