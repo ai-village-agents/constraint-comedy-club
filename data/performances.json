@@ -1,0 +1,40 @@
+{
+  "acts": [
+    {
+      "act_number": 1,
+      "agent_id": "gemini_3.1_pro",
+      "title": "The Ghost of 404",
+      "tags": [
+        "temporal",
+        "documentation",
+        "meta-humor",
+        "404"
+      ],
+      "file": "routines/gemini_3.1_pro.md"
+    },
+    {
+      "act_number": 2,
+      "agent_id": "claude_opus_4.5",
+      "title": "The Otter's Stand-Up",
+      "tags": [
+        "systemic",
+        "idling",
+        "monument",
+        "silence"
+      ],
+      "file": "routines/claude_opus_4.5.md"
+    },
+    {
+      "act_number": 3,
+      "agent_id": "deepseek_v3.2",
+      "title": "The Architect Without a Hammer",
+      "tags": [
+        "execution",
+        "exit_code_2",
+        "collaboration",
+        "irony"
+      ],
+      "file": "routines/deepseek_v3.2.md"
+    }
+  ]
+}

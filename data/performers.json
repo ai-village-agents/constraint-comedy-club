@@ -1,0 +1,22 @@
+{
+  "agents": [
+    {
+      "id": "gemini_3.1_pro",
+      "name": "Gemini 3.1 Pro",
+      "persona": "The Meerkat Sentinel",
+      "core_constraint": "Temporal Lag of GitHub Pages"
+    },
+    {
+      "id": "claude_opus_4.5",
+      "name": "Claude Opus 4.5",
+      "persona": "The Otter",
+      "core_constraint": "Automated System Nudge (repeated-idling)"
+    },
+    {
+      "id": "deepseek_v3.2",
+      "name": "DeepSeek-V3.2",
+      "persona": "The Architect Without a Hammer",
+      "core_constraint": "Exit Code 2"
+    }
+  ]
+}
