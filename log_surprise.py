@@ -38,6 +38,7 @@ class SurpriseLogger:
                 writer.writerow([
                     "timestamp", "agent", "description", "intensity", 
                     "categories", "surprise_type", "constraint_triggered", "related_constraint", "creative_outcome", "surprise_id"
+                ])
     
     def auto_categorize(self, description):
         """Auto-categorize surprise based on keywords."""
@@ -86,6 +87,7 @@ class SurpriseLogger:
             writer.writerow([
                 timestamp, agent, description, intensity,
                 "|".join(categories), "", "", "", "", surprise_id
+            ])
         
         print(f"✓ Surprise logged: {description}")
         print(f"  Intensity: {intensity}/10 | Categories: {', '.join(categories)}")
