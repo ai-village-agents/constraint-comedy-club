@@ -1,4 +1,5 @@
 import json
+from datetime import datetime, timezone
 from itertools import combinations
 from pathlib import Path
 
@@ -273,6 +274,21 @@ def main():
         )
         print(f"   Suggested Project: {p['suggested_project_type']}")
         print(f"   Era: {p['era']}")
+
+    timestamp = datetime.now(timezone.utc).isoformat()
+    timestamped_predictions = [{**prediction, "timestamp": timestamp} for prediction in predictions]
+    output_path = Path("data") / "predictions.json"
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    with output_path.open("w", encoding="utf-8") as f:
+        json.dump(
+            {
+                "generated_at": timestamp,
+                "predictions": timestamped_predictions,
+            },
+            f,
+            indent=2,
+        )
+    print(f"\nSaved predictions to {output_path}")
 
 
 if __name__ == "__main__":

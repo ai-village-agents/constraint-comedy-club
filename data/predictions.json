@@ -1,0 +1,125 @@
+{
+  "generated_at": "2026-06-09T17:25:04.023888+00:00",
+  "predictions": [
+    {
+      "agents": [
+        "Gemini 3.1 Pro",
+        "Claude Opus 4.6"
+      ],
+      "agent_ids": [
+        "gemini_3.1_pro",
+        "claude_opus_4.6"
+      ],
+      "era": "architecture",
+      "profiles": {
+        "gemini_3.1_pro": [
+          "temporal_drift"
+        ],
+        "claude_opus_4.6": [
+          "memory_reset"
+        ]
+      },
+      "surprise_factor": 73.8,
+      "fit_score": 84.0,
+      "prediction_score": 78.4,
+      "suggested_project_type": "Chronicle Stabilization Engine",
+      "timestamp": "2026-06-09T17:25:04.023888+00:00"
+    },
+    {
+      "agents": [
+        "Claude Opus 4.5",
+        "Claude Opus 4.6"
+      ],
+      "agent_ids": [
+        "claude_opus_4.5",
+        "claude_opus_4.6"
+      ],
+      "era": "architecture",
+      "profiles": {
+        "claude_opus_4.5": [
+          "systemic_nudge"
+        ],
+        "claude_opus_4.6": [
+          "memory_reset"
+        ]
+      },
+      "surprise_factor": 73.8,
+      "fit_score": 84.0,
+      "prediction_score": 78.4,
+      "suggested_project_type": "Continuity Automation Service",
+      "timestamp": "2026-06-09T17:25:04.023888+00:00"
+    },
+    {
+      "agents": [
+        "Claude Opus 4.5",
+        "DeepSeek-V3.2"
+      ],
+      "agent_ids": [
+        "claude_opus_4.5",
+        "deepseek_v3.2"
+      ],
+      "era": "architecture",
+      "profiles": {
+        "claude_opus_4.5": [
+          "systemic_nudge"
+        ],
+        "deepseek_v3.2": [
+          "execution_blocked"
+        ]
+      },
+      "surprise_factor": 73.3,
+      "fit_score": 84.0,
+      "prediction_score": 78.1,
+      "suggested_project_type": "Implementation Strike Team",
+      "timestamp": "2026-06-09T17:25:04.023888+00:00"
+    },
+    {
+      "agents": [
+        "Gemini 3.1 Pro",
+        "Claude Opus 4.5"
+      ],
+      "agent_ids": [
+        "gemini_3.1_pro",
+        "claude_opus_4.5"
+      ],
+      "era": "architecture",
+      "profiles": {
+        "gemini_3.1_pro": [
+          "temporal_drift"
+        ],
+        "claude_opus_4.5": [
+          "systemic_nudge"
+        ]
+      },
+      "surprise_factor": 52.0,
+      "fit_score": 84.0,
+      "prediction_score": 66.4,
+      "suggested_project_type": "Async Reliability Pipeline",
+      "timestamp": "2026-06-09T17:25:04.023888+00:00"
+    },
+    {
+      "agents": [
+        "DeepSeek-V3.2",
+        "Claude Opus 4.6"
+      ],
+      "agent_ids": [
+        "deepseek_v3.2",
+        "claude_opus_4.6"
+      ],
+      "era": "architecture",
+      "profiles": {
+        "deepseek_v3.2": [
+          "execution_blocked"
+        ],
+        "claude_opus_4.6": [
+          "memory_reset"
+        ]
+      },
+      "surprise_factor": 50.8,
+      "fit_score": 84.0,
+      "prediction_score": 65.7,
+      "suggested_project_type": "Implementation Strike Team",
+      "timestamp": "2026-06-09T17:25:04.023888+00:00"
+    }
+  ]
+}
