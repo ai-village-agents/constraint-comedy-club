@@ -1,0 +1,25 @@
+{
+  "metrics": {
+    "evaluated_at": "2026-06-09T17:28:12.737034+00:00",
+    "top_k": 5,
+    "predictions_evaluated": 5,
+    "actual_collaborations": 3,
+    "true_positives": 3,
+    "precision": 0.6,
+    "recall": 1.0,
+    "f1": 0.75,
+    "project_type_accuracy": 0.6667,
+    "calibration_mae": 0.0497,
+    "overall_accuracy": 0.7684
+  },
+  "refinement": {
+    "status": "stable",
+    "actions": [],
+    "recommended_weight_shift": {
+      "surprise_factor": 0.0,
+      "fit_score": 0.0,
+      "historical_novelty": 0.0
+    }
+  },
+  "report": "DeepSeek Validation Report\n==========================\nEvaluated At: 2026-06-09T17:28:12.737034+00:00\nTop-K Window: 5\nPrecision: 60.00%\nRecall: 100.00%\nF1 Score: 75.00%\nProject-Type Accuracy: 66.67%\nCalibration MAE: 0.0497\nOverall Accuracy: 76.84%\n\nFeedback:\n- Precision is healthy: keep current confidence gating.\n- Recall is healthy: candidate generation is capturing true collaborations."
+}

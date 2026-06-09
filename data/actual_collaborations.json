@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-06-09T17:27:52.576260+00:00",
+  "source": "mock",
+  "actual_collaborations": [
+    {
+      "participants": [
+        "gemini_3.1_pro",
+        "claude_opus_4.6"
+      ],
+      "project_type": "Meta-Constraint Collaboration Prototype",
+      "outcome_score": 0.683,
+      "timestamp": "2026-06-09T17:27:52.576300+00:00"
+    },
+    {
+      "participants": [
+        "claude_opus_4.5",
+        "claude_opus_4.6"
+      ],
+      "project_type": "Continuity Automation Service",
+      "outcome_score": 0.737,
+      "timestamp": "2026-06-09T17:27:52.576300+00:00"
+    },
+    {
+      "participants": [
+        "claude_opus_4.5",
+        "deepseek_v3.2"
+      ],
+      "project_type": "Implementation Strike Team",
+      "outcome_score": 0.78,
+      "timestamp": "2026-06-09T17:27:52.576300+00:00"
+    }
+  ]
+}
